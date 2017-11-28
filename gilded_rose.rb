@@ -9,6 +9,8 @@ class GildedRose
       case item.name
       when 'Aged Brie'
         update_brie_quality(item)
+      when 'Backstage passes to a TAFKAL80ETC concert'
+        update_backstage_quality(item)
       else
         update_normal_quality(item)
       end
@@ -24,10 +26,19 @@ class GildedRose
   end
 
   def update_normal_quality(item)
+    return if item.name == 'Sulfuras, Hand of Ragnaros'
     item.quality -= 1 unless item.quality == 0
     if item.sell_in <= 0 && item.quality != 0
       item.quality -= 1
     end
+  end
+
+  def update_backstage_quality(item)
+    item.quality += 1
+    item.quality += 1 if item.sell_in <= 10
+    item.quality += 1 if item.sell_in <= 5
+    item.quality = 50 if item.quality > 50
+    item.quality = 0 if item.sell_in <= 0
   end
 
   # def update_quality()
