@@ -3,7 +3,7 @@ require File.join(File.dirname(__FILE__), '../gilded_rose')
 describe GildedRose do
 
   describe '#to_s' do
-    it "quality should decrease each day" do
+    it "Should print out the string version of the item's information" do
       items = [Item.new("Normal item", 10, 5)]
       GildedRose.new(items).update_quality()
       expect(items[0].to_s).to eq "Normal item, 9, 4"
@@ -90,19 +90,19 @@ describe GildedRose do
 
     describe 'Sulfuras, Hand of Ragnaros' do
       it "quality shouldn't change, 1" do
-        items = [Item.new("Sulfuras, Hand of Ragnaros", 1, 3)]
+        items = [Item.new("Sulfuras, Hand of Ragnaros", 1, 80)]
         GildedRose.new(items).update_quality()
-        expect(items[0].quality).to eq 3
+        expect(items[0].quality).to eq 80
       end
 
       it "quality shouldn't change, 2" do
-        items = [Item.new("Sulfuras, Hand of Ragnaros", -3, 3)]
+        items = [Item.new("Sulfuras, Hand of Ragnaros", -3, 80)]
         GildedRose.new(items).update_quality()
-        expect(items[0].quality).to eq 3
+        expect(items[0].quality).to eq 80
       end
 
       it "sell in date should not decrease" do
-        items = [Item.new("Sulfuras, Hand of Ragnaros", -3, 3)]
+        items = [Item.new("Sulfuras, Hand of Ragnaros", -3, 80)]
         GildedRose.new(items).update_quality()
         expect(items[0].sell_in).to eq -3
       end
@@ -169,8 +169,5 @@ describe GildedRose do
         expect(items[0].sell_in).to eq 0
       end
     end
-
-    
   end
-
 end

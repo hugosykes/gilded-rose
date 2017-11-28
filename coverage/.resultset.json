@@ -174,9 +174,6 @@
         null,
         null,
         null,
-        null,
-        null,
-        null,
         null
       ],
       "/Users/hugosykes/Makers/week10/gilded-rose/gilded_rose.rb": [
@@ -248,11 +245,8 @@
         1,
         null,
         null
-      ],
-      "/Users/hugosykes/Makers/week10/gilded-rose/spec/gilded_spec.rb": [
-
       ]
     },
-    "timestamp": 1511870827
+    "timestamp": 1511871296
   }
 }
