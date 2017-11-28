@@ -10,7 +10,7 @@ class GildedRose
       when 'Aged Brie'
         update_brie_quality(item)
       else
-        
+        update_normal_quality(item)
       end
       item.sell_in -= 1 unless item.name == "Sulfuras, Hand of Ragnaros"      
     end
@@ -20,6 +20,13 @@ class GildedRose
     item.quality += 1 if item.quality < 50
     if item.quality < 50 && item.sell_in <= 0
       item.quality += 1
+    end
+  end
+
+  def update_normal_quality(item)
+    item.quality -= 1 unless item.quality == 0
+    if item.sell_in <= 0 && item.quality != 0
+      item.quality -= 1
     end
   end
 
