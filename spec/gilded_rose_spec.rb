@@ -169,5 +169,49 @@ describe GildedRose do
         expect(items[0].sell_in).to eq 0
       end
     end
+
+    describe 'Conjured' do
+      it "quality should decrease each day" do
+        items = [Item.new("Conjured", 10, 5)]
+        GildedRose.new(items).update_quality()
+        expect(items[0].quality).to eq 3
+      end
+
+      it "quality should decrease twice as fast after sellin date" do
+        items = [Item.new("Conjured", 0, 5)]
+        GildedRose.new(items).update_quality()
+        expect(items[0].quality).to eq 1
+      end
+
+      it "quality should decrease twice as fast long after sellin date" do
+        items = [Item.new("Conjured", -3, 5)]
+        GildedRose.new(items).update_quality()
+        expect(items[0].quality).to eq 1
+      end
+
+      it "quality should never be below 0, 1" do
+        items = [Item.new("Conjured", -3, 0)]
+        GildedRose.new(items).update_quality()
+        expect(items[0].quality).to eq 0
+      end
+
+      it "quality should never be below 0, 2" do
+        items = [Item.new("Conjured", 1, 0)]
+        GildedRose.new(items).update_quality()
+        expect(items[0].quality).to eq 0
+      end
+
+      it "quality should never be below 0, 3" do
+        items = [Item.new("Conjured", -3, 1)]
+        GildedRose.new(items).update_quality()
+        expect(items[0].quality).to eq 0
+      end
+
+      it "sell in should decrease" do
+        items = [Item.new("Conjured", 1, 50)]
+        GildedRose.new(items).update_quality()
+        expect(items[0].sell_in).to eq 0
+      end
+    end
   end
 end

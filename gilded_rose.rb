@@ -11,12 +11,16 @@ class GildedRose
         update_brie_quality(item)
       when 'Backstage passes to a TAFKAL80ETC concert'
         update_backstage_quality(item)
+      when 'Conjured'
+        update_conjured_quality(item)
       else
         update_normal_quality(item)
       end
       item.sell_in -= 1 unless item.name == "Sulfuras, Hand of Ragnaros"      
     end
   end
+  
+  private 
 
   def update_brie_quality(item)
     item.quality += 1 if item.quality < 50
@@ -39,6 +43,12 @@ class GildedRose
     item.quality += 1 if item.sell_in <= 5
     item.quality = 50 if item.quality > 50
     item.quality = 0 if item.sell_in <= 0
+  end
+
+  def update_conjured_quality(item)
+    item.quality -= 2
+    item.quality -= 2 if item.sell_in <= 0
+    item.quality = 0 if item.quality < 0
   end
 end
   
