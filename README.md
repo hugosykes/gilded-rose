@@ -6,7 +6,7 @@ After sell-by date, quality goes up double
 
 # Sulfuras
 
-Sell in date nor quality increase at any point
+Sell in date nor quality increase at any point - quality is always 80
 
 # Backstage passes
 
